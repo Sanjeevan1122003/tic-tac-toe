@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Loader</title>
+    <style>
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: black;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 5px;
+        }
+        #image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #image-container img {
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="dynamic-image" src="./TICTACTOE2.png" alt="Loading...">
+    </div>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">loading...</div>
+    </div>
+    <script>
+        const images = [
+            './TICTACTOE2.png',
+            './TICTACTOE3.png',
+            './TICTACTOE4.png'
+        ];
+        const imageIntervalDuration = 2000; // Interval duration in milliseconds for image change
+        const progressDuration = imageIntervalDuration * images.length; // Duration for progress bar to reach 100%
+        const progressSteps = 100; // Number of steps for progress bar update
+        const progressIntervalDuration = progressDuration / progressSteps; // Interval duration in milliseconds for progress bar update
+
+        let currentIndex = 0;
+        let progress = 0;
+        let imageInterval, progressInterval;
+
+        function loadImage() {
+            const imageElement = document.getElementById('dynamic-image');
+            imageElement.src = images[currentIndex];
+            currentIndex += 1;
+
+            if (currentIndex === images.length) {
+                clearInterval(imageInterval); // Stop the interval after the last image
+                setTimeout(() => {
+                    alert('Loading Complete!');
+                    updateProgressBar(true);
+                }, imageIntervalDuration); // Display alert and complete progress bar after the last image
+            }
+        }
+
+        function updateProgressBar(complete = false) {
+            const progressBar = document.getElementById('progressBar');
+            if (complete) {
+                progress = 100;
+                progressBar.style.width = progress + '%';
+                progressBar.innerHTML = 'loading...';
+                clearInterval(progressInterval);
+            } else {
+                progress += (100 / progressSteps);
+                if (progress > 100) progress = 100;
+                progressBar.style.width = progress + '%';
+                progressBar.innerHTML = 'loading...';
+            }
+        }
+
+        function startLoader() {
+            loadImage(); // Load the first image immediately
+            progress = 0; // Reset progress
+            currentIndex = 0; // Reset image index
+            if (imageInterval) clearInterval(imageInterval); // Clear any existing image interval
+            if (progressInterval) clearInterval(progressInterval); // Clear any existing progress interval
+            imageInterval = setInterval(loadImage, imageIntervalDuration); // Change image at intervals
+            progressInterval = setInterval(() => updateProgressBar(), progressIntervalDuration); // Update progress bar at intervals
+        }
+
+        // Initially start the loader
+        startLoader();
+    </script>
+</body>
+</html>
+

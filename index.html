@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC TAC TOE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="sectionWelcome" class="section">
+        <div class="welcome-template">
+            <div class="welcome-head">
+                <h1 >TIC</h1>
+                <h1>TAC</h1>
+                <h1>TOE</h1>
+            </div>
+            <button class="welcome-button" onclick="display('sectionLoader')">Get Started</button>
+        </div>
+    </div>
+    <div id="sectionLoader" class="section">
+        <div>
+            <div id="image-container">
+                <img id="dynamic-image" src="" alt="Loading...">
+                <div class="loader">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sectionHome" class="section">
+        <h4 class="tittle-head">TIC TAC TOE</h4>
+        <p class="tittle-paragraph">We can play two players at a time.</p>
+        <div class="input-box body-background">
+            <p class="player-tittle">Players details:</p>
+            <div>
+                <div>
+                    <label>Enter Player 1 Name: 
+                        <input class="input-name" type="text" placeholder="Player 1" id="player1">
+                    </label>
+                </div>
+                <div>
+                    <label>Enter Player 2 Name: 
+                        <input class="input-name" type="text" placeholder="Player 2" id="player2">
+                    </label>
+                </div>
+            </div>
+            <button style="margin: 10px;" onclick="submitDetails()">Submit</button>
+            <button onclick="display('sectionGame')">Go to Game</button>
+        </div>
+        <div class="score-card">
+            <div class="player-card1">
+                <p class="player-tittle">Player 1:</p>
+                <p id="p1">name</p>
+                <p>Symbol: O</p>
+            </div>
+            <div class="player-card2">
+                <p class="player-tittle">Player 2:</p>
+                <p id="p2">name</p>
+                <p>Symbol: X</p>
+            </div>
+        </div>
+    </div>
+    <div id="sectionGame" class="section" style="padding:10px; display:none;">
+        <h4 class="tittle-head">TIC TAC TOE</h4>
+        <div class="game-pad">
+            <div class="pad">
+                <p class="game-tittle">Game Pad</p>
+                <div class="row">
+                    <input class="input-game-pad" id="cell1" readonly>
+                    <input class="input-game-pad" id="cell2" readonly>
+                    <input class="input-game-pad" id="cell3" readonly>
+                </div>
+                <div class="row">
+                    <input class="input-game-pad" id="cell4" readonly>
+                    <input class="input-game-pad" id="cell5" readonly>
+                    <input class="input-game-pad" id="cell6" readonly>
+                </div>
+                <div class="row">
+                    <input class="input-game-pad" id="cell7" readonly>
+                    <input class="input-game-pad" id="cell8" readonly>
+                    <input class="input-game-pad" id="cell9" readonly>
+                </div>
+                <div class="result-pad" id="result">
+                    <p class="tittle-paragraph" id="palyerWon"></p>
+                    <p class="tittle-paragraph" id="symbolWon"></p>
+                    <button style="width: 100%; margin: 5px;" onclick="playAgain()">Play again</button>
+                    <button style="width: 100%; margin: 5px;" onclick="closeGame()">Close</button>
+                </div>
+            </div>
+        </div>
+        <div class="score-card">
+            <div class="player-card1">
+                <p class="player-tittle">Player 1:</p>
+                <p id="p1-game">name</p>
+                <p>Symbol: O</p>
+            </div>
+            <div class="player-card2">
+                <p class="player-tittle">Player 2:</p>
+                <p id="p2-game">name</p>
+                <p>Symbol: X</p>
+            </div>
+        </div>
+    </div>
+    <script type ="text/javascript" src="script.js"></script>
+</body>
+</html>
